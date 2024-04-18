@@ -1,4 +1,4 @@
-import { Palette } from "lucide-react";
+import { Loader, Palette } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { useSelector } from "react-redux";
 import { Slice } from "@/types/sliceTypes";
@@ -41,7 +41,7 @@ function SetThemeButton() {
   );
   const dispatch = useDispatch();
 
-  const { mutate } = useSetNotesPref();
+  const { mutate, isPending } = useSetNotesPref();
 
   function onSelectTheme(items: ThemeTypes) {
     const pref = {
@@ -79,6 +79,7 @@ function SetThemeButton() {
       </PopoverTrigger>
 
       <PopoverContent className="flex flex-col gap-1 w-26">
+        {isPending && <Loader className="animate-spin mx-auto w-5" />}
         {themeOpt.map((items: ThemeTypes) => {
           return (
             <button
@@ -87,6 +88,7 @@ function SetThemeButton() {
               }`}
               key={items.name}
               onClick={() => onSelectTheme(items)}
+              disabled={isPending}
             >
               <span
                 className={`size-4 block border border-black rounded-sm  ${items.bg} `}

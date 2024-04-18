@@ -18,7 +18,7 @@ function useOnPermanentDelete() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: deleteNotes,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["userData"] });
@@ -40,7 +40,8 @@ function useOnPermanentDelete() {
     const items = selected?.length > 0 ? selected : [{ _id: notesId }];
     mutate(items);
   }
-  return onPermanentDelete;
+
+  return { onPermanentDelete, isPending };
 }
 
 export default useOnPermanentDelete;

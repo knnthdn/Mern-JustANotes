@@ -10,15 +10,13 @@ import { useDispatch } from "react-redux";
 import { resetNotes } from "@/utils/globalSlice";
 
 function useRecyleNotes() {
-  const { selected, isOnRead } = useSelector(
-    (state: Slice) => state.persistedReducer
-  );
+  const { isOnRead } = useSelector((state: Slice) => state.persistedReducer);
   const onCancelSelect = useOnCancelSelect();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationKey: ["recycledNotes"],
     mutationFn: recycleNotes,
     onSuccess: () => {
@@ -37,9 +35,6 @@ function useRecyleNotes() {
     },
   });
 
-  function onRecycleNotes() {
-    mutate(selected);
-  }
-  return onRecycleNotes;
+  return { mutate, isPending };
 }
 export default useRecyleNotes;

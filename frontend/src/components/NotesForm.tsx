@@ -14,6 +14,7 @@ function NotesForm({ register, setFocus }: FormFn) {
   const { isOnRead, title, content, theme } = useSelector(
     (state: Slice) => state.persistedReducer
   );
+
   const [editNotes, setEditNotes] = useState<boolean>(true);
   const wordsCount = content.length && content.split(" ").length;
 
@@ -25,7 +26,7 @@ function NotesForm({ register, setFocus }: FormFn) {
 
   return (
     <form
-      className="flex flex-col px-4 gap-2 h-full bg-inherit text-inherit"
+      className={`flex flex-col px-4 gap-2 h-full bg-inherit text-inherit`}
       onSubmit={(e) => e.preventDefault()}
     >
       <div className="flex flex-col text-xs gap-1">

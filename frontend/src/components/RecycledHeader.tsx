@@ -57,7 +57,9 @@ function OnEditRecycle() {
   const { selected, isSelectAll } = useSelector(
     (state: Slice) => state.persistedReducer
   );
+
   const { onSelectAll } = useOnSelectAll();
+
   return (
     <header className="flex justify-between items-center px-4 py-6 border-b border-b-gray-300 sm:px-8 lg:py-10 lg:text-lg">
       <button onClick={() => onSelectAll()}>
@@ -65,7 +67,6 @@ function OnEditRecycle() {
       </button>
 
       <span>{selected.length ? selected.length : "Select Items"}</span>
-
       <button onClick={() => onCancelSelect()}>Cancel</button>
     </header>
   );

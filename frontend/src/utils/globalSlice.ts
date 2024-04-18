@@ -49,6 +49,7 @@ const globalSlice = createSlice({
       state.notesId = "";
       state.isOnRead = false;
       state.isOnRead = false;
+      state.onEdit = false;
       state.onEditRecycle = false;
       state.theme = {};
       state.fontSize = "";

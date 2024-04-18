@@ -34,10 +34,10 @@ function Main() {
   }
   const { data } = useGetUserData();
 
-  // const headerGreet =
-  //   data?.data.user.nickname === undefined
-  //     ? data?.data.user.email.split("@")[0]
-  //     : data?.data.user.nickname;
+  const headerGreet =
+    data?.data.user.nickname === undefined
+      ? data?.data.user.email.split("@")[0]
+      : data?.data.user.nickname;
 
   return (
     <header className="flex justify-between items-center p-4 border-b border-b-gray-300 sm:px-8 lg:py-6 ">
@@ -55,7 +55,7 @@ function Main() {
           <SheetTitle className="font-medium capitalize">
             Welcome{" "}
             <span className="hover:underline" onClick={() => navigate("/user")}>
-              {/* {headerGreet} */}
+              {headerGreet}
             </span>
           </SheetTitle>
 

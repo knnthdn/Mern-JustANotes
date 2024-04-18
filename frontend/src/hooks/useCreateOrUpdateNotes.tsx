@@ -24,7 +24,7 @@ function useToggleNotes() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationKey: ["newNotes"],
     mutationFn: ({ title, content }: NewNotes) =>
       isOnRead
@@ -45,7 +45,7 @@ function useToggleNotes() {
       navigate(-1);
     },
   });
-  return { title, content, mutate };
+  return { title, content, mutate, isPending };
 }
 
 export default useToggleNotes;

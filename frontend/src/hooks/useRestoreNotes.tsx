@@ -18,7 +18,7 @@ function useRestoreNotes() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: restoreNotes,
     onSuccess: () => {
       queryClient.invalidateQueries();
@@ -42,6 +42,6 @@ function useRestoreNotes() {
     mutate(items);
   }
 
-  return onRestore;
+  return { onRestore, isPending };
 }
 export default useRestoreNotes;

@@ -1,4 +1,4 @@
-import { Check, MoveLeft } from "lucide-react";
+import { Check, Loader, MoveLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
@@ -12,7 +12,7 @@ function OnNoteTab({
 }: {
   handleSubmit: UseFormHandleSubmit<FormInputs>;
 }) {
-  const { title, content, mutate } = useToggleNotes();
+  const { title, content, mutate, isPending } = useToggleNotes();
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -36,12 +36,15 @@ function OnNoteTab({
   }
 
   return (
-    <nav className="flex justify-between p-4">
+    <nav className={`flex justify-between p-4 `}>
       <MoveLeft
         size="32"
         className="cursor-pointer hover:scale-[.95]"
         onClick={() => handleSubmit(toggleBackBtn)()}
       />
+
+      {isPending && <Loader className="animate-spin w-5" />}
+
       <Check
         size="32"
         className="cursor-pointer hover:scale-[.95]"

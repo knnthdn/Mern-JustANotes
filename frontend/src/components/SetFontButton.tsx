@@ -1,4 +1,4 @@
-import { WholeWord } from "lucide-react";
+import { Loader, WholeWord } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import useSetNotesPref from "@/hooks/useSetNotesPref";
 import { useSelector } from "react-redux";
@@ -30,7 +30,7 @@ function SetFontButton() {
   const { notesId, isOnRead, fontSize } = useSelector(
     (state: Slice) => state.persistedReducer
   );
-  const { mutate } = useSetNotesPref();
+  const { mutate, isPending } = useSetNotesPref();
   const dispatch = useDispatch();
 
   function onSetFont(fs: FontTypes) {
@@ -59,6 +59,7 @@ function SetFontButton() {
       </PopoverTrigger>
 
       <PopoverContent className="flex flex-col w-26 gap-1">
+        {isPending && <Loader className="animate-spin mx-auto w-5" />}
         {fontOpt.map((items: FontTypes) => {
           return (
             <button
@@ -67,6 +68,7 @@ function SetFontButton() {
               }`}
               key={items.name}
               onClick={() => onSetFont(items)}
+              disabled={isPending}
             >
               {items.name}
             </button>

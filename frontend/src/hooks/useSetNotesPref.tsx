@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 function useSetNotesPref() {
   const queryClient = useQueryClient();
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationKey: ["setTheme"],
     mutationFn: ({ id, pref }: { id: string | undefined; pref: object }) =>
       setTheme(id, pref),
@@ -12,7 +12,7 @@ function useSetNotesPref() {
     },
   });
 
-  return { mutate };
+  return { mutate, isPending };
 }
 
 export default useSetNotesPref;

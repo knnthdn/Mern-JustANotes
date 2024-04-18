@@ -17,6 +17,7 @@ const createSendToken = (user, statusCode, res) => {
     expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
     secure: process.env.NODE_ENV !== "development" ? true : false,
     httpOnly: true,
+    sameSite: "none",
   };
 
   res.cookie("notes_cookies", token, cookieOption);
